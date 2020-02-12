@@ -1,0 +1,47 @@
+Starting...
+begin bmp
+bmp self test failed -93
+dig_t1 = 27451
+dig_t2 = 26060
+dig_t3 = 50
+dig_p1 = 37653
+dig_p2 = -10412
+dig_p3 = 3024
+dig_p4 = 9720
+dig_p5 = -246
+dig_p6 = -7
+dig_p7 = 15500
+dig_p8 = -14600
+dig_p9 = 6000
+Setup Complete
+w r = 0, 0xA53 / 2643, 0xEF64 / 61284
+
+measuring = 0, uncomp_temp = 80000, uncompPres = 80000
+w 0xA8B / 2699, 0x1272D / 75565
+measuring = 0, uncomp_temp = 60CC0, uncompPres = 7E5E0
+w 0xFFFFFB51 / -1199, 0x11906 / 71942
+
+measuring = 0, uncomp_temp = 80000, uncompPres = 80000
+w 0xA8B / 2699, 0x1272D / 75565
+measuring = 0, uncomp_temp = 60F20, uncompPres = 7ED30
+w 0xFFFFFB65 / -1179, 0x117F6 / 71670
+
+measuring = 0, uncomp_temp = 80000, uncompPres = 80000
+w 0xA8B / 2699, 0x1272D / 75565
+measuring = 0, uncomp_temp = 611E0, uncompPres = 7F880
+w 0xFFFFFB7A / -1158, 0x1164B / 71243
+
+measuring = 0, uncomp_temp = 80000, uncomp_press = 80000
+w 0xA8B / 2699, 0x1272D / 75565
+measuring = 0, uncomp_temp = 80758, uncomp_press = 6156A
+w 0xAC4 / 2756, 0x17976 / 96630
+measuring = 0, uncomp_temp = 80818, uncomp_press = 615A5
+w 0xACA / 2762, 0x17974 / 96628
+
+27Benson21
+
+81.716
+8171.6
+
+(27.62°C × 9/5) + 32 = 81.716°F
+2PMB00000ACA00017974
