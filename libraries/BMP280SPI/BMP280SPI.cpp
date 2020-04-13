@@ -21,7 +21,6 @@
 *
 */
 #include <Arduino.h>
-#include "tinySPI.h"
 #include "BMP280SPI.h"
 
 //#define HAS_SERIAL
@@ -44,6 +43,9 @@ const uint8_t	kCtrlMeas = (BMP280_OS_1X << 5) | (BMP280_OS_1X << 2) | BMP280_SLE
 BMP280SPI::BMP280SPI(
 	uint8_t		inCSPin)
 	: mCSPin(inCSPin)
+#ifdef SPI_HAS_TRANSACTION
+	  , mSPISettings(10000000, MSBFIRST, SPI_MODE0)
+#endif
 {
 }
 

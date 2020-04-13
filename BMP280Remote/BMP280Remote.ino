@@ -113,7 +113,8 @@ void setup(void)
 		wdrCount++;
 		EEPROM.put(2, wdrCount);
 	}
-
+	
+	SPI.begin();
 	bmp280.begin();
 
 	// Read the network and node IDs from EEPROM
@@ -170,7 +171,15 @@ void SendBMPPacket(void)
 	bmp280.DoForcedRead(packet.temp, packet.pres);
 
 	packet.message = kBMP280;
-    radio.send(kTargetID, &packet, sizeof(packet));
+    /*
+    *	Do a send without first checking if the channel is clear.  The RFM69
+    *	gets into a strange state where canSend() always returns false even
+    *	though there isn't another transmitter for miles.  When this happens
+    *	sending isn't possible until the transceiver's power is cycled.  Simply
+    *	reinitializing by calling RFM69::initialize() doesn't help.
+    */
+    radio.sendFrame(kTargetID, &packet, sizeof(packet));
+    //radio.send(kTargetID, &packet, sizeof(packet));
 	radio.sleep();
 }
 

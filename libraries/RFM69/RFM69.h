@@ -103,6 +103,7 @@ class RFM69 {
     bool canSend();
     virtual void send(uint8_t toAddress, const void* buffer, uint8_t bufferSize, bool requestACK=false);
     virtual bool sendWithRetry(uint8_t toAddress, const void* buffer, uint8_t bufferSize, uint8_t retries=2, uint8_t retryWaitTime=40); // 40ms roundtrip req for 61byte packets
+	virtual void sendFrame(uint8_t toAddress, const void* buffer, uint8_t size, bool requestACK=false, bool sendACK=false);
     virtual bool receiveDone();
     bool ACKReceived(uint8_t fromNodeID);
     bool ACKRequested();
@@ -134,7 +135,7 @@ class RFM69 {
    // void virtual interruptHandler();
     virtual void interruptHook(uint8_t CTLbyte) {};
   //  static volatile bool _inISR;
-   virtual void sendFrame(uint8_t toAddress, const void* buffer, uint8_t size, bool requestACK=false, bool sendACK=false);
+  // virtual void sendFrame(uint8_t toAddress, const void* buffer, uint8_t size, bool requestACK=false, bool sendACK=false);
 
     //static RFM69* selfPointer;
     uint8_t _slaveSelectPin;

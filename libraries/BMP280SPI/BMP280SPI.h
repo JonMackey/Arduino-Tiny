@@ -27,6 +27,11 @@
 #define BMP280SPI_h
 
 #include "bmp280_defs.h"
+#if defined(__AVR_ATtiny24__) || defined(__AVR_ATtiny44__) || defined(__AVR_ATtiny84__)
+#include "tinySPI.h"
+#else
+#include <SPI.h>
+#endif
 
 class BMP280SPI
 {
@@ -39,17 +44,27 @@ public:
 								uint32_t&				outPres);
 protected:
 	uint8_t				mCSPin;
+#ifdef SPI_HAS_TRANSACTION
+	SPISettings	mSPISettings;
+#endif
 	struct bmp280_calib_param	mCParams;
 
 	inline void				BeginTransaction(void)
 							{
+							#ifdef SPI_HAS_TRANSACTION
+								SPI.beginTransaction(mSPISettings);
+							#else
 								SPI.setDataMode(SPI_MODE0);
+							#endif
 								digitalWrite(mCSPin, LOW);
 							}
 
 	inline void				EndTransaction(void)
 							{
 								digitalWrite(mCSPin, HIGH);
+							#ifdef SPI_HAS_TRANSACTION
+								SPI.endTransaction();
+							#endif
 							}
 	uint8_t					ReadReg8(
 								uint8_t					inRegAddr);
